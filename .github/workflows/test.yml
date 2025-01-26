@@ -1,0 +1,15 @@
+name: Run Tosca Tests
+on:
+  push:
+    branches: [ test ]
+jobs:
+  run_tests:
+   runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Login to Tosca Commander
+        run: |
+          toscactl login --URL "C:\Tosca_Projects\Tosca_Workspaces\test_Pallavi\test_Pallavi.ws"" --Username "Admin" --password ""
+     - name: Execute Test Suite
+        run: |
+          toscactl run --suite "smoketest" --agent-selector "agent_group=your_agent_group
