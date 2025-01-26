@@ -1,8 +1,13 @@
 name: hello-world
 on: push
 jobs:
-  my-job:
+  My-job:
     runs-on: ubuntu-latest
-    steps:
-      - name: my-step
-        run: echo "Hello World!"
+    Steps:
+    uses: actions/checkout@v3
+      - name: Login to Tosca Commander
+        run: toscactl login --URL "https://your-tosca-commander-url" --username "your_username" --password "your_password"
+      - name: Execute Test Suite
+        run: |
+          toscactl run --suite "your_test_suite_name" --agent-selector "agent_group=your_agent_group"
+
